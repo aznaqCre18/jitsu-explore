@@ -14,6 +14,7 @@ const App = () => {
         changePassword,
         handleOnCall,
         roomName,
+        changeEmail,
       }) => (
         <div className="container-meet">
           <div className="title">
@@ -38,6 +39,12 @@ const App = () => {
                 type="text"
                 placeholder="Name"
                 onChange={changeName}
+              />
+              <Input
+                label="email"
+                type="text"
+                placeholder="Email"
+                onChange={changeEmail}
               />
               <Input
                 label="password"

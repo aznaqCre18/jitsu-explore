@@ -16,6 +16,9 @@ export default class IFrame extends Component {
           onMeetingEnd={() => (window.location.href = "http://localhost:3000")}
           loadingComponent={<p>loading ...</p>}
           containerStyles={{ height: "100vh", width: "100vw" }}
+          userInfo={{
+            displayName: this.context.name,
+          }}
         />
       </>
     ) : null;

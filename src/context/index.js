@@ -9,6 +9,7 @@ class ContextProvider extends Component {
     name: "",
     password: "",
     onCall: false,
+    email: "",
   };
 
   changeRoomName = (event) => {
@@ -20,6 +21,12 @@ class ContextProvider extends Component {
   changeName = (event) => {
     this.setState({
       name: event.target.value,
+    });
+  };
+
+  changeEmail = (event) => {
+    this.setState({
+      email: event.target.value,
     });
   };
 
@@ -43,6 +50,7 @@ class ContextProvider extends Component {
             ...this.state,
             changeRoomName: this.changeRoomName,
             changeName: this.changeName,
+            changeEmail: this.changeEmail,
             changePassword: this.changePassword,
             handleOnCall: this.handleOnCall,
           }}

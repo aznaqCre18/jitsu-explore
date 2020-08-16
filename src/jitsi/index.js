@@ -1,49 +1,37 @@
-import React, { useState } from "react";
-import Jitsi from "react-jitsi";
-// import Loader from "@material-ui/core/CircularProgress";
+import React, { useState, useEffect } from "react";
+import { Consumer } from "../context";
+import { Link } from "react-router-dom";
 
-const JitsiEx = () => {
-  const [displayName, setDisplayName] = useState("");
-  const [roomName, setRoomName] = useState("");
-  const [password, setPassword] = useState("");
-  const [onCall, setOnCall] = useState(false);
+function JitsiMeetComponent() {
+  // const [loading, setLoading] = useState(false);
+  // const [roomName, setRoomName] = useState("");
+  // const [displayName, setDisplayName] = useState("");
+  // const [onCall, setOnCall] = useState(false);
 
-  const handleClick = (e) => {
-    e.preventDefault();
-
-    if (roomName && displayName) {
-      setOnCall(true);
-    }
-  };
-
-  return onCall ? (
-    <Jitsi
-      domain="meet.jit.si"
-      roomName={roomName}
-      displayName={displayName}
-      password={password}
-      // loadingComponent={Loader}
-      // onAPILoad={(JitsiMeetAPI) => console.log("Good Morning everyone!")}
-      containerStyle={{ height: "100vh", width: "100vw" }}
-    />
-  ) : (
-    <>
-      <h1>Crate a Meeting</h1>
-      <input
-        type="text"
-        placeholder="Room name"
-        value={roomName}
-        onChange={(e) => setRoomName(e.target.value)}
-      />
-      <input
-        type="text"
-        placeholder="Your name"
-        value={displayName}
-        onChange={(e) => setDisplayName(e.target.value)}
-      />
-      <button onClick={handleClick}> Let&apos;s start!</button>
-    </>
+  return (
+    <Consumer>
+      {({ changeName, changeRoomName, handleOnCall, roomName }) => (
+        <>
+          <h1>Crate a Meeting</h1>
+          <input
+            type="text"
+            placeholder="Room name"
+            // value={roomName}
+            onChange={changeRoomName}
+          />
+          <input
+            type="text"
+            placeholder="Your name"
+            // value={displayName}
+            onChange={changeName}
+          />
+          <Link to={`/${roomName}`}>
+            <button onClick={handleOnCall}> Let&apos;s start!</button>
+          </Link>
+        </>
+      )}
+    </Consumer>
   );
-};
+}
 
-export default JitsiEx;
+export default JitsiMeetComponent;
